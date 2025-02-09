@@ -17,12 +17,15 @@ use Git;
 
 use v5.14;
 
+my $HELP_FLAG = "-h";
+
 my @subcommands = qw(objetivo sube-objetivo);
+push( @subcommands, quotemeta $HELP_FLAG);
 
 die( print_usage() ) unless @ARGV;
 my $subcommand = shift;
 
-die "No se reconoce el subcomando $subcommand" unless grep( /\b$subcommand\b/, @subcommands );
+die "No se reconoce el subcomando $subcommand" unless grep( /\Q$subcommand/, @subcommands );
 
 my $repo;
 
@@ -31,7 +34,8 @@ eval {
 } or die "Aparentemente, no estás en un repositorio";
 
 my @args = @ARGV;
-die( print_usage ()) if @args && $args[0] eq '--help'  ;
+
+say print_usage() if (!@args || $subcommand eq $HELP_FLAG);
 
 if ( $subcommand eq "objetivo" ) {
   $repo->command( "checkout", "-b", "Objetivo-" . $args[0]);
@@ -49,7 +53,7 @@ Uso:
     git iv objetivo <número> -- crea una rama para ese objetivo
     git iv sube-objetivo     -- sube al repo remoto la rama
 
-    git iv --help -- imprime este mensaje
+    git iv $HELP_FLAG -- imprime este mensaje
 EOC
 }
 
