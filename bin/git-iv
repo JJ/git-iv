@@ -27,15 +27,15 @@ my $subcommand = shift;
 
 die "No se reconoce el subcomando $subcommand" unless grep( /\Q$subcommand/, @subcommands );
 
+my @args = @ARGV;
+
+say usage_string() if (!@args || $subcommand eq $HELP_FLAG);
+
 my $repo;
 
 eval {
   $repo = Git->repository;
 } or die "Aparentemente, no estás en un repositorio";
-
-my @args = @ARGV;
-
-say usage_string() if (!@args || $subcommand eq $HELP_FLAG);
 
 if ( $subcommand eq "objetivo" ) {
   $repo->command( "checkout", "-b", "Objetivo-" . $args[0]);
