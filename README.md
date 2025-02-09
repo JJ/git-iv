@@ -17,6 +17,8 @@ o Mac). `wget` estará probablemente instalado también en cualquiera de estos s
 Ya se puede usar a continuación. Por ejemplo
 
 ```
-> git iv # Para imprimir los subcomandos
+> git iv    # Para imprimir los subcomandos
 > git iv -h # Ídem
+> git iv objetivo 0    # Crea la rama del objetivo 0
+> git iv sube-objetivo # Hace push del objetivo
 ```
