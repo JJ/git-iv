@@ -35,8 +35,6 @@ my $subcommand = shift;
 
 die "No se reconoce el subcomando $subcommand" unless grep( /\Q$subcommand/, @subcommands );
 
-my @args = @ARGV;
-
 if ( $subcommand eq $HELP_FLAG ) {
   say $USAGE_STRING;
 } else {
@@ -48,8 +46,9 @@ if ( $subcommand eq $HELP_FLAG ) {
   } or die "Aparentemente, no estás en un repositorio";
 
   if ( $subcommand eq "objetivo" ) {
-    die $USAGE_STRING unless @args;
-    $repo->command( "checkout", "-b", "Objetivo-" . $args[0]);
+    die $USAGE_STRING unless @ARGV;
+    my $numero_objetivo = shift;
+    $repo->command( "checkout", "-b", "Objetivo-" . $numero_objetivo);
   }
 
   if ( $subcommand eq "sube-objetivo" ) {
