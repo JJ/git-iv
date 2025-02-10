@@ -26,7 +26,6 @@ Uso:
     git iv $HELP_FLAG -- imprime este mensaje
 EOC
 
-
 my @subcommands = qw(objetivo sube-objetivo);
 push( @subcommands, quotemeta $HELP_FLAG);
 
