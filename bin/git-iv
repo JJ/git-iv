@@ -29,7 +29,7 @@ EOC
 my @subcommands = qw(objetivo sube-objetivo);
 push( @subcommands, quotemeta $HELP_FLAG);
 
-die( usage_string() ) unless @ARGV;
+die( $USAGE_STRING ) unless @ARGV;
 my $subcommand = shift;
 
 die "No se reconoce el subcomando $subcommand" unless grep( /\Q$subcommand/, @subcommands );
