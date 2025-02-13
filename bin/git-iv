@@ -53,6 +53,7 @@ if ( $subcommand eq $HELP_FLAG ) {
   if ( $subcommand eq "sube-objetivo" ) {
     my $branch = $repo->command( "rev-parse", "--abbrev-ref", "HEAD" );
     chomp($branch);
+    say "Sigue las instrucciones del comando siguiente para hacer el PR";
     $repo->command ( "push", "-u", "origin", $branch );
   }
 }
